@@ -1,5 +1,8 @@
+"use client";
 import { useState } from 'react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
   const [form, setForm] = useState({ name: '', password: '' });
@@ -12,28 +15,62 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await fetch('/api/login', {
+    const response = await fetch('https://bible-test.onrender.com/login', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(form)
+      body: JSON.stringify(form),
     });
 
     if (response.ok) {
       localStorage.setItem('currentUser', form.name);
+      toast.success('Login successful');
       router.push('/quiz');
     } else {
-      alert('Invalid credentials');
+      toast.error('Invalid credentials');
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col max-w-md mx-auto mt-10">
-      <input type="text" name="name" value={form.name} onChange={handleChange} placeholder="Name" required className="p-2 border border-gray-300 rounded mb-2" />
-      <input type="password" name="password" value={form.password} onChange={handleChange} placeholder="Password" required className="p-2 border border-gray-300 rounded mb-2" />
-      <button type="submit" className="bg-blue-500 text-white p-2 rounded">Login</button>
-    </form>
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 p-4">
+      <form onSubmit={handleSubmit} className="bg-white shadow-lg rounded-lg p-8 max-w-md w-full transform transition-all duration-500 hover:scale-105">
+        <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">Login to Your Account</h2>
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
+            Name
+          </label>
+          <input
+            type="text"
+            name="name"
+            value={form.name}
+            onChange={handleChange}
+            placeholder="Enter your name"
+            required
+            className="p-3 border border-gray-300 rounded-lg w-full focus:outline-none focus:ring-4 focus:ring-purple-500"
+          />
+        </div>
+        <div className="mb-6">
+          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
+            Password
+          </label>
+          <input
+            type="password"
+            name="password"
+            value={form.password}
+            onChange={handleChange}
+            placeholder="Enter your password"
+            required
+            className="p-3 border border-gray-300 rounded-lg w-full focus:outline-none focus:ring-4 focus:ring-purple-500"
+          />
+        </div>
+        <div className="flex items-center justify-between">
+          <button type="submit" className="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline transform transition-all duration-300 hover:scale-105">
+            Login
+          </button>
+        </div>
+      </form>
+    </div>
   );
 };
 

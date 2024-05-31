@@ -1,3 +1,5 @@
+"use client"
+
 import { useState, useEffect } from 'react';
 import ResultModal from './ResultModal';
 
@@ -57,7 +59,7 @@ const Quiz = () => {
 
   const handleSubmit = async () => {
     const user = localStorage.getItem('currentUser');
-    const response = await fetch('/api/submit', {
+    const response = await fetch('https://bible-test.onrender.com/submit', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

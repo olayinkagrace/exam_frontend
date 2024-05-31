@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from 'react';
 
 const AdminDashboard = () => {
@@ -5,10 +7,10 @@ const AdminDashboard = () => {
 
   useEffect(() => {
     const fetchUsers = async () => {
-      const response = await fetch('http://localhost:5000/users');
+      const response = await fetch('https://bible-test.onrender.com/users');
       if (response.ok) {
         const data = await response.json();
-        setUsers(data.users);
+        setUsers(data); // Directly use data since the backend returns an array of users
       }
     };
 
