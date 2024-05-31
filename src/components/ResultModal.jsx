@@ -2,11 +2,16 @@ import React from 'react';
 
 const ResultModal = ({ score }) => {
   return (
-    <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center">
-      <div className="bg-white p-4 rounded">
-        <h2 className="text-2xl mb-4">Quiz Completed!</h2>
-        <p className="text-lg">Your Score: {score}</p>
-        <button onClick={() => window.location.reload()} className="mt-4 bg-blue-500 text-white p-2 rounded">Close</button>
+    <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50">
+      <div className="bg-white p-8 rounded-lg shadow-lg max-w-sm w-full text-center">
+        <h2 className="text-3xl font-bold mb-4 text-gray-800">Quiz Completed!</h2>
+        <p className="text-xl mb-6 text-gray-600">Your Score: <span className="text-green-500 font-bold">{score}</span></p>
+        <button 
+          onClick={() => window.location.reload()} 
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-300 transform hover:scale-105"
+        >
+          Close
+        </button>
       </div>
     </div>
   );

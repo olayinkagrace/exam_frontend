@@ -18,24 +18,28 @@ const AdminDashboard = () => {
   }, []);
 
   return (
-    <div className="mt-10">
-      <h2 className="text-2xl mb-4">Admin Dashboard</h2>
-      <table className="w-full">
-        <thead>
-          <tr>
-            <th className="border px-4 py-2">Name</th>
-            <th className="border px-4 py-2">Score</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map((user, index) => (
-            <tr key={index}>
-              <td className="border px-4 py-2">{user.name}</td>
-              <td className="border px-4 py-2">{user.score}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className="min-h-screen flex flex-col items-center bg-gray-100 py-10">
+      <div className="w-full max-w-4xl bg-white shadow-lg rounded-lg p-6">
+        <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">Admin Dashboard</h2>
+        <div className="overflow-x-auto">
+          <table className="w-full table-auto border-collapse">
+            <thead>
+              <tr className="bg-blue-500 text-white">
+                <th className="border px-4 py-2">Name</th>
+                <th className="border px-4 py-2">Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              {users.map((user, index) => (
+                <tr key={index} className="even:bg-gray-100 odd:bg-white">
+                  <td className="border px-4 py-2 text-gray-700">{user.name}</td>
+                  <td className="border px-4 py-2 text-gray-700">{user.score}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   );
 };
