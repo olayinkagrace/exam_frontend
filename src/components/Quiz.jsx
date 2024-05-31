@@ -1,7 +1,8 @@
-"use client"
+"use client";
 
 import { useState, useEffect } from 'react';
 import ResultModal from './ResultModal';
+import 'react-toastify/dist/ReactToastify.css';
 
 const questions = [
   { question: 'What is the capital of France?', options: ['Berlin', 'Madrid', 'Paris', 'Lisbon'], answer: 'Paris' },
@@ -75,26 +76,45 @@ const Quiz = () => {
   };
 
   return (
-    <div className="flex flex-col items-center mt-10">
-      <div className="text-2xl mb-4">{questions[currentQuestion].question}</div>
-      {questions[currentQuestion].options.map((option) => (
-        <button key={option} onClick={() => handleAnswerOptionClick(option)} className="bg-blue-500 text-white p-2 rounded m-2">
-          {option}
-        </button>
-      ))}
-      <div className="flex justify-between w-full max-w-md mt-4">
-        <button onClick={handlePrevious} className="bg-gray-500 text-white p-2 rounded" disabled={currentQuestion === 0}>
-          Previous
-        </button>
-        <button onClick={handleNext} className="bg-gray-500 text-white p-2 rounded" disabled={currentQuestion === questions.length - 1}>
-          Next
-        </button>
-        <button onClick={handleSubmit} className="bg-green-500 text-white p-2 rounded">
-          Submit
-        </button>
-      </div>
-      <div className="mt-4 text-lg">
-        Time Left: {Math.floor(timeLeft / 60)}:{timeLeft % 60 < 10 ? `0${timeLeft % 60}` : timeLeft % 60}
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 p-4">
+      <div className="bg-white shadow-lg rounded-lg p-6 max-w-3xl w-full text-center">
+        <div className="text-2xl font-bold mb-4 text-gray-800">{questions[currentQuestion].question}</div>
+        <div className="flex flex-col space-y-4">
+          {questions[currentQuestion].options.map((option) => (
+            <button 
+              key={option} 
+              onClick={() => handleAnswerOptionClick(option)} 
+              className="bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-700 transform transition-all duration-300 hover:scale-105"
+            >
+              {option}
+            </button>
+          ))}
+        </div>
+        <div className="flex justify-between w-full mt-6">
+          <button 
+            onClick={handlePrevious} 
+            className="bg-gray-500 text-white p-2 rounded-lg hover:bg-gray-700 transform transition-all duration-300 hover:scale-105"
+            disabled={currentQuestion === 0}
+          >
+            Previous
+          </button>
+          <button 
+            onClick={handleNext} 
+            className="bg-gray-500 text-white p-2 rounded-lg hover:bg-gray-700 transform transition-all duration-300 hover:scale-105"
+            disabled={currentQuestion === questions.length - 1}
+          >
+            Next
+          </button>
+          <button 
+            onClick={handleSubmit} 
+            className="bg-green-500 text-white p-2 rounded-lg hover:bg-green-700 transform transition-all duration-300 hover:scale-105"
+          >
+            Submit
+          </button>
+        </div>
+        <div className="mt-4 text-lg font-bold text-gray-700">
+          Time Left: {Math.floor(timeLeft / 60)}:{timeLeft % 60 < 10 ? `0${timeLeft % 60}` : timeLeft % 60}
+        </div>
       </div>
       {showModal && <ResultModal score={score} />}
     </div>
