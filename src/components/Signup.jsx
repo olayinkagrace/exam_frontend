@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Signup = () => {
-  const [form, setForm] = useState({ name: '', password: '', confirmPassword: '' });
+  const [form, setForm] = useState({ name: '', email: '',  password: '', confirmPassword: '' });
   const router = useRouter();
 
   const handleChange = (e) => {
@@ -24,12 +24,12 @@ const Signup = () => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ name: form.name, password: form.password }),
+      body: JSON.stringify({ name: form.name, email: form.email, password: form.password }),
     });
 
     if (response.ok) {
       toast.success('Signup successful');
-      router.push('/login');
+      router.push('/admin/register-user');
     } else {
       toast.error('Signup failed');
     }
@@ -38,7 +38,7 @@ const Signup = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 p-4">
       <form onSubmit={handleSubmit} className="bg-white shadow-lg rounded-lg p-8 max-w-md w-full transform transition-all duration-500 hover:scale-105">
-        <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">Create Your Account</h2>
+        <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">Register Student</h2>
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
             Name
@@ -48,7 +48,21 @@ const Signup = () => {
             name="name"
             value={form.name}
             onChange={handleChange}
-            placeholder="Enter your name"
+            placeholder="Enter student name"
+            required
+            className="p-3 border border-gray-300 rounded-lg w-full focus:outline-none focus:ring-4 focus:ring-purple-500"
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
+            Email
+          </label>
+          <input
+            type="text"
+            name="email"
+            value={form.email}
+            onChange={handleChange}
+            placeholder="Enter student email address"
             required
             className="p-3 border border-gray-300 rounded-lg w-full focus:outline-none focus:ring-4 focus:ring-purple-500"
           />
@@ -62,7 +76,7 @@ const Signup = () => {
             name="password"
             value={form.password}
             onChange={handleChange}
-            placeholder="Enter your password"
+            placeholder="Enter password"
             required
             className="p-3 border border-gray-300 rounded-lg w-full focus:outline-none focus:ring-4 focus:ring-purple-500"
           />
@@ -76,7 +90,7 @@ const Signup = () => {
             name="confirmPassword"
             value={form.confirmPassword}
             onChange={handleChange}
-            placeholder="Confirm your password"
+            placeholder="Confirm password"
             required
             className="p-3 border border-gray-300 rounded-lg w-full focus:outline-none focus:ring-4 focus:ring-purple-500"
           />
