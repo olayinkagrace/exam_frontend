@@ -65,7 +65,7 @@ const Quiz = () => {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ name: user, score })
+      body: JSON.stringify({ email: user, score })
     });
 
     if (response.ok) {
