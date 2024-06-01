@@ -31,7 +31,7 @@ const Login = () => {
       toast.success(data.message || 'Login successful');
       router.push('/quiz');
     } else {
-      toast.error(data.error || 'Invalid credentials front');
+      toast.error(data.error || 'Invalid credentials');
     }
   } catch (error) {
     toast.error('Something went wrong. Please try again later.');
