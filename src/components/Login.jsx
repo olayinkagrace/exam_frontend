@@ -13,8 +13,9 @@ const Login = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
+  try {
     const response = await fetch('https://bible-test.onrender.com/login', {
       method: 'POST',
       headers: {
@@ -23,14 +24,20 @@ const Login = () => {
       body: JSON.stringify(form),
     });
 
+    const data = await response.json();
+
     if (response.ok) {
       localStorage.setItem('currentUser', form.email);
-      toast.success('Login successful');
+      toast.success(data.message || 'Login successful');
       router.push('/quiz');
     } else {
-      toast.error('Invalid credentials');
+      toast.error(data.error || 'Invalid credentials');
     }
-  };
+  } catch (error) {
+    toast.error('Something went wrong. Please try again later.');
+  }
+};
+
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 p-4">
