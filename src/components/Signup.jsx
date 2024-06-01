@@ -29,7 +29,7 @@ const Signup = () => {
 
     if (response.ok) {
       toast.success('Signup successful');
-      router.push('/admin/register-user');
+      router.push('/admin/users');
     } else {
       toast.error('Signup failed');
     }
@@ -41,7 +41,7 @@ const Signup = () => {
         <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">Register Student</h2>
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
-            Name
+           Full Name
           </label>
           <input
             type="text"

@@ -26,6 +26,8 @@ const AdminDashboard = () => {
             <thead>
               <tr className="bg-blue-500 text-white">
                 <th className="border px-4 py-2">Name</th>
+                <th className="border px-4 py-2">Email</th>
+                <th className="border px-4 py-2">Password</th>
                 <th className="border px-4 py-2">Score</th>
               </tr>
             </thead>
@@ -33,6 +35,8 @@ const AdminDashboard = () => {
               {users.map((user, index) => (
                 <tr key={index} className="even:bg-gray-100 odd:bg-white">
                   <td className="border px-4 py-2 text-gray-700">{user.name}</td>
+                  <td className="border px-4 py-2 text-gray-700">{user.email}</td>
+                  <td className="border px-4 py-2 text-gray-700">{user.password}</td>
                   <td className="border px-4 py-2 text-gray-700">{user.score}</td>
                 </tr>
               ))}
