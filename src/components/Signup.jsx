@@ -5,7 +5,8 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Signup = () => {
-  const [form, setForm] = useState({ name: '', email: '',  password: '', confirmPassword: '' });
+  const [form, setForm] = useState({ name: '', email: '', password: '', confirmPassword: '' });
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const handleChange = (e) => {
@@ -19,6 +20,7 @@ const Signup = () => {
       return;
     }
 
+    setLoading(true);
     const response = await fetch('https://bible-test.onrender.com/signup', {
       method: 'POST',
       headers: {
@@ -26,6 +28,8 @@ const Signup = () => {
       },
       body: JSON.stringify({ name: form.name, email: form.email, password: form.password }),
     });
+
+    setLoading(false);
 
     if (response.ok) {
       toast.success('Signup successful');
@@ -58,7 +62,7 @@ const Signup = () => {
             Email
           </label>
           <input
-            type="text"
+            type="email"
             name="email"
             value={form.email}
             onChange={handleChange}
@@ -96,8 +100,12 @@ const Signup = () => {
           />
         </div>
         <div className="flex items-center justify-between">
-          <button type="submit" className="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline transform transition-all duration-300 hover:scale-105">
-            Signup
+          <button
+            type="submit"
+            className={`font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline transform transition-all duration-300 hover:scale-105 ${loading ? 'bg-purple-300 text-gray-500' : 'bg-purple-500 hover:bg-purple-700 text-white'}`}
+            disabled={loading}
+          >
+            {loading ? 'Signing Up...' : 'Signup'}
           </button>
         </div>
       </form>
