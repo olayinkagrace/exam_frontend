@@ -1,5 +1,4 @@
 "use client";
-
 import { useState, useEffect } from 'react';
 import ResultModal from './ResultModal';
 import 'react-toastify/dist/ReactToastify.css';
@@ -17,6 +16,7 @@ const Quiz = () => {
   const [score, setScore] = useState(0);
   const [showModal, setShowModal] = useState(false);
   const [timeLeft, setTimeLeft] = useState(30 * 60); // 30 minutes in seconds
+  const [selectedOptions, setSelectedOptions] = useState(Array(questions.length).fill(null));
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -34,38 +34,39 @@ const Quiz = () => {
   }, []);
 
   const handleAnswerOptionClick = (option) => {
-    if (option === questions[currentQuestion].answer) {
-      setScore(score + 1);
-    }
+    setSelectedOptions(prev => {
+      const newSelections = [...prev];
+      newSelections[currentQuestion] = option;
+      return newSelections;
+    });
 
-    const nextQuestion = currentQuestion + 1;
-    if (nextQuestion < questions.length) {
-      setCurrentQuestion(nextQuestion);
-    } else {
-      setShowModal(true);
+    if (option === questions[currentQuestion].answer) {
+      setScore(prevScore => prevScore + 1);
     }
   };
 
   const handlePrevious = () => {
     if (currentQuestion > 0) {
-      setCurrentQuestion(currentQuestion - 1);
+      setCurrentQuestion(prev => prev - 1);
     }
   };
 
   const handleNext = () => {
     if (currentQuestion < questions.length - 1) {
-      setCurrentQuestion(currentQuestion + 1);
+      setCurrentQuestion(prev => prev + 1);
     }
   };
 
   const handleSubmit = async () => {
-    const user = localStorage.getItem('currentUser');
+    const email = localStorage.getItem('currentUser');
+    console.log(`Submitting score for user: ${email}, score: ${score}`);
+
     const response = await fetch('https://bible-test.onrender.com/submit', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ email: user, score })
+      body: JSON.stringify({ email, score })
     });
 
     if (response.ok) {
@@ -78,13 +79,13 @@ const Quiz = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 p-4">
       <div className="bg-white shadow-lg rounded-lg p-6 max-w-3xl w-full text-center">
-        <div className="text-2xl font-bold mb-4 text-gray-800">{questions[currentQuestion].question}</div>
+        <div className="text-2xl font-bold mb-4 text-gray-800">{`Question ${currentQuestion + 1}: ${questions[currentQuestion].question}`}</div>
         <div className="flex flex-col space-y-4">
           {questions[currentQuestion].options.map((option) => (
             <button 
               key={option} 
               onClick={() => handleAnswerOptionClick(option)} 
-              className="bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-700 transform transition-all duration-300 hover:scale-105"
+              className={`p-2 rounded-lg transform transition-all duration-300 hover:scale-105 ${selectedOptions[currentQuestion] === option ? 'bg-green-500 text-white' : 'bg-blue-500 text-white hover:bg-blue-700'}`}
             >
               {option}
             </button>
@@ -98,19 +99,21 @@ const Quiz = () => {
           >
             Previous
           </button>
-          <button 
-            onClick={handleNext} 
-            className="bg-gray-500 text-white p-2 rounded-lg hover:bg-gray-700 transform transition-all duration-300 hover:scale-105"
-            disabled={currentQuestion === questions.length - 1}
-          >
-            Next
-          </button>
-          <button 
-            onClick={handleSubmit} 
-            className="bg-green-500 text-white p-2 rounded-lg hover:bg-green-700 transform transition-all duration-300 hover:scale-105"
-          >
-            Submit
-          </button>
+          {currentQuestion < questions.length - 1 ? (
+            <button 
+              onClick={handleNext} 
+              className="bg-gray-500 text-white p-2 rounded-lg hover:bg-gray-700 transform transition-all duration-300 hover:scale-105"
+            >
+              Next
+            </button>
+          ) : (
+            <button 
+              onClick={handleSubmit} 
+              className="bg-green-500 text-white p-2 rounded-lg hover:bg-green-700 transform transition-all duration-300 hover:scale-105"
+            >
+              Submit
+            </button>
+          )}
         </div>
         <div className="mt-4 text-lg font-bold text-gray-700">
           Time Left: {Math.floor(timeLeft / 60)}:{timeLeft % 60 < 10 ? `0${timeLeft % 60}` : timeLeft % 60}
