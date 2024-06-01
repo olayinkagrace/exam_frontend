@@ -36,9 +36,7 @@ const Login = () => {
   } catch (error) {
     toast.error('Something went wrong. Please try again later.');
   }
-};
-
-
+}
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 p-4">
       <form onSubmit={handleSubmit} className="bg-white shadow-lg rounded-lg p-8 max-w-md w-full transform transition-all duration-500 hover:scale-105">
