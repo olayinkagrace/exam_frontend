@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import ResultModal from "./ResultModal";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const questions = [
@@ -31,7 +32,7 @@ const Quiz = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
   const [showModal, setShowModal] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(1 * 60); // 30 minutes in seconds
+  const [timeLeft, setTimeLeft] = useState(1 * 60); // 1 minute in seconds
   const [selectedOptions, setSelectedOptions] = useState(
     Array(questions.length).fill(null)
   );
@@ -41,7 +42,7 @@ const Quiz = () => {
       setTimeLeft((prevTime) => {
         if (prevTime <= 1) {
           clearInterval(timer);
-          handleSubmit();
+          handleSubmit(score); // Pass the current score to handleSubmit
           return 0;
         }
         return prevTime - 1;
@@ -49,7 +50,7 @@ const Quiz = () => {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [score]);
 
   const handleAnswerOptionClick = (option) => {
     // Check if the option has already been selected for the current question
@@ -88,21 +89,25 @@ const Quiz = () => {
     }
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (finalScore) => {
     const email = localStorage.getItem("currentUser");
 
-    const response = await fetch("https://bible-test.onrender.com/submit", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, score }),
-    });
+    try {
+      const response = await fetch("https://bible-test.onrender.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, score: finalScore }),
+      });
 
-    if (response.ok) {
-      setShowModal(true);
-    } else {
-      alert("Error submitting score");
+      if (response.ok) {
+        setShowModal(true);
+      } else {
+        toast.error("Error submitting score");
+      }
+    } catch (error) {
+      toast.error("An error occurred while submitting the score");
     }
   };
 
@@ -149,7 +154,7 @@ const Quiz = () => {
             </button>
           ) : (
             <button
-              onClick={handleSubmit}
+              onClick={() => handleSubmit(score)} // Pass the current score to handleSubmit
               className="bg-green-500 text-white p-2 rounded-lg hover:bg-green-700 transform transition-all duration-300 hover:scale-105"
             >
               Submit
