@@ -1,20 +1,15 @@
-import React from 'react';
+"use client"
+import React, { useEffect, useState } from 'react';
 
 const Corrections = () => {
-  // Mock data of incorrect questions and their correct answers
-  const incorrectQuestions = [
-    {
-      question: "What is the capital of France?",
-      selectedAnswer: "Berlin",
-      correctAnswer: "Paris"
-    },
-    {
-      question: "What is 2 + 2?",
-      selectedAnswer: "3",
-      correctAnswer: "4"
-    },
-    // Add more incorrect questions here if needed
-  ];
+  const [incorrectQuestions, setIncorrectQuestions] = useState([]);
+
+  useEffect(() => {
+    const savedWrongAnswers = localStorage.getItem('wrongAnswers');
+    if (savedWrongAnswers) {
+      setIncorrectQuestions(JSON.parse(savedWrongAnswers));
+    }
+  }, []);
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 py-10">

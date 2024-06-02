@@ -162,7 +162,13 @@ const Quiz = () => {
           )}
         </div>
       </div>
-      {showModal && <ResultModal score={score} />}
+      {showModal && (
+        <ResultModal
+          score={score}
+          questions={questions}
+          selectedOptions={selectedOptions}
+        />
+      )}
     </div>
   );
 };

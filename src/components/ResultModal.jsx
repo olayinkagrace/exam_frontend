@@ -1,39 +1,60 @@
+import React from "react";
 import { useRouter } from 'next/navigation';
-import React from 'react';
 
-const ResultModal = ({ score, incorrectQuestions }) => {
+const ResultModal = ({ score, questions, selectedOptions }) => {
   const router = useRouter();
-
-  const handleClose = () => {
-    localStorage.removeItem('authToken');
-    router.push('/');
-  };
+  
+  const wrongAnswers = questions.filter(
+    (question, index) => selectedOptions[index] !== question.answer
+  );
 
   const handleShowCorrections = () => {
-    router.push('/corrections');
+    // Save the wrong answers in localStorage or state management to pass them to the Corrections page
+    localStorage.setItem('wrongAnswers', JSON.stringify(wrongAnswers));
+    router.push('/corrections'); // Navigate to the corrections page
+  };
+
+  const handleClose = () => {
+    localStorage.removeItem('authToken'); // Remove the authentication token
+    router.push('/'); // Redirect to the home page
   };
 
   return (
-    <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50">
-      <div className="bg-white p-8 rounded-lg shadow-lg max-w-sm w-full text-center">
-        <h2 className="text-3xl font-bold mb-4 text-gray-800">Congratulations!</h2>
-        <p className="text-lg mb-6 text-gray-600">
-          You have completed the quiz.
-          <br />
-          Your Score: <span className="text-green-500 font-bold">{score}</span>
+    <div className="fixed inset-0 z-50 overflow-y-auto flex justify-center items-center bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 ">
+      <div className="bg-white rounded-lg p-8 max-w-md w-full">
+        <h2 className="text-2xl font-bold mb-4">Quiz Result</h2>
+        <p className="mb-4">
+          Your score: {score}/{questions.length}
         </p>
-        <button 
-          onClick={handleShowCorrections} 
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mr-2 transition duration-300 transform hover:scale-105"
-        >
-          Show Corrections
-        </button>
-        <button 
-          onClick={handleClose} 
-          className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full transition duration-300 transform hover:scale-105"
-        >
-          Close
-        </button>
+        <div className="mb-4">
+          <h3 className="text-xl font-semibold mb-2">Incorrect Answers:</h3>
+          <ul>
+            {wrongAnswers.map((question, index) => (
+              <li key={index} className="mb-2">
+                <p>
+                  <span className="font-semibold">Question:</span>{" "}
+                  {question.question}
+                </p>
+                <p>
+                  <span className="font-semibold">Your Answer:</span>{" "}
+                  {selectedOptions[questions.indexOf(question)]}
+                </p>
+                <p>
+                  <span className="font-semibold">Correct Answer:</span>{" "}
+                  {question.answer}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="flex justify-center">
+          <button
+            onClick={handleClose}
+            className=" bg-violet-500 text-white py-2 w-3/5 px-4 rounded-lg hover:bg-violet-700 transition duration-300"
+          >
+            Close
+          </button>
+        </div>
       </div>
     </div>
   );
