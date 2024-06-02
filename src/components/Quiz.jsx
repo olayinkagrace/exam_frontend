@@ -1,5 +1,7 @@
-"use client";
+"use client"
+
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import ResultModal from "./ResultModal";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -36,6 +38,14 @@ const Quiz = () => {
   const [selectedOptions, setSelectedOptions] = useState(
     Array(questions.length).fill(null)
   );
+  const router = useRouter();
+
+  useEffect(() => {
+    const currentUser = localStorage.getItem("currentUser");
+    if (!currentUser) {
+      router.push("/"); // Redirect to home page if user is not logged in
+    }
+  }, []);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -88,10 +98,9 @@ const Quiz = () => {
       setCurrentQuestion((prev) => prev + 1);
     }
   };
-
   const handleSubmit = async (finalScore) => {
     const email = localStorage.getItem("currentUser");
-
+  
     try {
       const response = await fetch("https://bible-test.onrender.com/submit", {
         method: "POST",
@@ -100,7 +109,7 @@ const Quiz = () => {
         },
         body: JSON.stringify({ email, score: finalScore }),
       });
-
+  
       if (response.ok) {
         setShowModal(true);
       } else {
@@ -109,7 +118,11 @@ const Quiz = () => {
     } catch (error) {
       toast.error("An error occurred while submitting the score");
     }
+    finally {
+      localStorage.removeItem("currentUser");
+    }
   };
+  
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 p-4">

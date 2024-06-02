@@ -15,7 +15,7 @@ const ResultModal = ({ score, questions, selectedOptions }) => {
   };
 
   const handleClose = () => {
-    localStorage.removeItem('authToken'); // Remove the authentication token
+    localStorage.clear();// Remove the authentication token
     router.push('/'); // Redirect to the home page
   };
 

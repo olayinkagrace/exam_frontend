@@ -15,7 +15,12 @@ const Signup = () => {
   const router = useRouter();
 
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    // Convert email to lowercase before setting the state
+    if (e.target.name === 'email') {
+      setForm({ ...form, email: e.target.value.toLowerCase() });
+    } else {
+      setForm({ ...form, [e.target.name]: e.target.value });
+    }
   };
 
   const handleSubmit = async (e) => {
