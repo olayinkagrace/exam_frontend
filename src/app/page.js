@@ -1,10 +1,15 @@
 import Link from 'next/link';
+import logo from "../../public/logo.jpg";
+import Image from "next/image";
 
 export default function Home() {
   return (
     <main className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 px-4">
       <div className="bg-white p-8 rounded-lg shadow-lg text-center">
-        <h1 className="text-2xl md:text-3xl font-bold mb-4">Welcome to the Examination Portal</h1>
+      <div className="flex justify-center">
+       <Image src={logo} width={70} height={50} alt="logo" />
+       </div>
+        <h1 className="text-2xl md:text-3xl font-bold mb-4 mt-5">Welcome to the Examination Portal</h1>
         <p className="text-base md:text-lg mb-6">Please read the following instructions carefully before proceeding:</p>
         <div className="text-left mb-6">
           <ol className="list-decimal list-inside text-sm md:text-base">

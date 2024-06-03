@@ -17,7 +17,7 @@ const ResultModal = ({ score, questions, selectedOptions }) => {
     <div className="fixed inset-0 z-50 overflow-y-auto flex justify-center items-center bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400">
       <div className="bg-white rounded-lg p-8 h-full overflow-y-auto">
         <h2 className="text-2xl font-bold mb-4">Quiz Result</h2>
-        <p className="mb-4">
+        <p className="mb-4 font-bold text-xl">
           Your score: {score}/{questions.length * 5}
         </p>
         <div className="mb-4">

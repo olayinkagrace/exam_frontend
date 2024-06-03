@@ -3,6 +3,8 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import logo from "../../public/logo.jpg";
+import Image from "next/image";
 
 const Signup = () => {
   const [form, setForm] = useState({
@@ -79,7 +81,10 @@ const Signup = () => {
           onSubmit={handleSubmit}
           className="bg-white shadow-lg rounded-lg p-8 max-w-md w-full transform transition-all duration-500 hover:scale-105"
         >
-          <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">
+          <div className="flex justify-center">
+            <Image src={logo} width={70} height={50} alt="logo" />
+          </div>
+          <h2 className="text-2xl font-bold mb-6 text-center mt-5 text-gray-800">
             Register Student
           </h2>
           <div className="mb-4">
