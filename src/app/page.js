@@ -27,7 +27,7 @@ export default function Home() {
             </li>
             <li>Each question carries 5 marks, 12 questions per section and each section totals 60 marks.</li>
             <li>There is a negative marking structure in place. For every question you miss, one mark is deducted from your total accumulated marks.</li>
-            <li>Make sure to Click on the submit button on the last question before the time lapses. Failure to do this, you will not have a score for the test.</li>
+            <li className="font-bold">Make sure to Click on the submit button on the last question before the time lapses. Failure to do this, you will not have a score for the test.</li>
             <li>At the end of the test, you will see your score instantly.</li>
             <li>Every question you missed will be listed upon submission, along with their correct answers.</li>
           </ol>
