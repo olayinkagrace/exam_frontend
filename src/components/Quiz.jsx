@@ -12,7 +12,7 @@ const Quiz = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [scores, setScores] = useState(Array(sections.length).fill(0));
   const [showModal, setShowModal] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(2 * 60); // 4 minutes in seconds for all sections
+  const [timeLeft, setTimeLeft] = useState(10 * 60); // 10 minutes in seconds for all sections
   const [selectedOptions, setSelectedOptions] = useState(
     sections.map((section) => Array(section.questions.length).fill(null))
   );
@@ -42,21 +42,21 @@ const Quiz = () => {
 
   const handleAnswerOptionClick = (option) => {
     const currentQuestions = sections[currentSection].questions;
-  
+
     if (selectedOptions[currentSection][currentQuestion] === option) {
       return; // Prevent multiple selections of the same option
     }
-  
+
     setSelectedOptions((prev) => {
       const newSelections = [...prev];
       newSelections[currentSection][currentQuestion] = option;
       return newSelections;
     });
-  
+
     // Calculate the score for the current question
     const isCorrect = option === currentQuestions[currentQuestion].answer;
     const scoreChange = isCorrect ? 5 : -1;
-  
+
     // Update the score for the current section
     setScores((prevScores) => {
       const newScores = [...prevScores];
@@ -64,7 +64,6 @@ const Quiz = () => {
       return newScores;
     });
   };
-  
 
   const handlePrevious = () => {
     if (currentQuestion > 0) {
@@ -86,39 +85,36 @@ const Quiz = () => {
 
   const handleSubmit = async () => {
     const email = localStorage.getItem("currentUser");
-  const handleSubmit = async () => {
-  const email = localStorage.getItem("currentUser");
 
-  try {
-    const response = await fetch("https://bible-test.onrender.com/submit", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email,
-        scores: sections.map((section, index) => ({
-          title: section.title,
-          score: scores[index],
-        })),
-      }),
-    });
+    try {
+      const response = await fetch("https://bible-test.onrender.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          scores: sections.map((section, index) => ({
+            title: section.title,
+            score: scores[index],
+          })),
+        }),
+      });
 
-    if (response.ok) {
-      setShowModal(true);
-      localStorage.removeItem("currentUser");  // Moved here
-    } else {
-      const errorData = await response.json();
-      console.error("Error submitting score:", errorData);  // Added logging
-      toast.error("Error submitting score");
+      if (response.ok) {
+        setShowModal(true);
+        localStorage.removeItem("currentUser");
+      } else {
+        const errorData = await response.json();
+        console.error("Error submitting score:", errorData);
+        toast.error("Error submitting score");
+      }
+    } catch (error) {
+      console.error("An error occurred while submitting the score:", error);
+      toast.error("An error occurred while submitting the score");
     }
-  } catch (error) {
-    console.error("An error occurred while submitting the score:", error);  // Added logging
-    toast.error("An error occurred while submitting the score");
-  }
-};
+  };
 
-  
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 p-4">
       <div className="bg-white shadow-lg rounded-lg p-6 max-w-3xl w-full text-center">
@@ -175,7 +171,7 @@ const Quiz = () => {
       {showModal && (
         <ResultModal
           score={scores.reduce((a, b) => a + b, 0)} // total score
-          questions={sections.flatMap(section => section.questions)} // all questions
+          questions={sections.flatMap((section) => section.questions)} // all questions
           selectedOptions={selectedOptions.flat()} // all selected options
         />
       )}
