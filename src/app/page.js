@@ -8,8 +8,8 @@ export default function Home() {
         <p className="text-base md:text-lg mb-6">Please read the following instructions carefully before proceeding:</p>
         <div className="text-left mb-6">
           <ol className="list-decimal list-inside text-sm md:text-base">
-            <li>Your username is your email address, and your password is your SURNAME or FIRST NAME in lowercase letters. For example, if your surname is <p className='font-bold'>"Obafemi,&quot;</p> your password will be <p className='font-bold'>"Obafemi,&quot;</p></li>
-            <li>If you entered the details correctly and you get an error message saying <p className='font-bold'>"wrong credientials&quot;</p> try using your LAST NAME as your password (in lowercase letters). For example, "Obafemi Awolowo" should try <p className='font-bold'>"awolo,&quot;</p>  if <p className='font-bold'>"Obafemi,&quot;</p>  does not work.</li>
+            <li>Your username is your email address, and your password is your SURNAME or FIRST NAME in lowercase letters. For example, if your surname is <small className='font-bold text-base'>"Obafemi&quot;</small> your password will be <small className='font-bold text-base'>"Obafemi&quot;</small></li>
+            <li>If you entered the details correctly and you get an error message saying <small className='font-bold text-base'>"wrong credientials&quot;</small> try using your LAST NAME as your password (in lowercase letters). For example, "Obafemi Awolowo" should try <small className='font-bold text-base'>"awolo,&quot;</small>  if <small className='font-bold text-base'>"Obafemi,&quot;</small>  does not work.</li>
             <li>The duration of the examination is 48 minutes. It is advisable to spend a maximum of one minute on each question to ensure you finish before the time runs out.</li>
             <li>Once you are logged in, you will not be allowed to take the exam again. So, make sure to finish the exam once you log in.</li>
             <li>There are four sections in total, and you must answer all the questions in each section.</li>
