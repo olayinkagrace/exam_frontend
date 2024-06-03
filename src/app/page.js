@@ -8,8 +8,7 @@ export default function Home() {
         <p className="text-base md:text-lg mb-6">Please read the following instructions carefully before proceeding:</p>
         <div className="text-left mb-6">
           <ol className="list-decimal list-inside text-sm md:text-base">
-            <li>Your username is your email address, and your password is your SURNAME or FIRST NAME in lowercase letters. For example, if your surname is <span className='font-bold text-base'>{"Obafemi"}</span>, your password will be <span className='font-bold text-base'>{"Obafemi"}</span></li>
-            <li>If you entered the details correctly and you get an error message saying <span className='font-bold text-base'>{"wrong credentials"}</span>, try using your LAST NAME as your password (in lowercase letters). For example, "Obafemi Awolowo" should try <span className='font-bold text-base'>{"awolo,"}</span>  if <span className='font-bold text-base'>{"Obafemi,"}</span>  does not work.</li>
+            <li>Your password is <small className="font-bold text-lg"> gospel</small>  </li>
             <li>The duration of the examination is 48 minutes. It is advisable to spend a maximum of one minute on each question to ensure you finish before the time runs out.</li>
             <li>Once you are logged in, you will not be allowed to take the exam again. So, make sure to finish the exam once you log in.</li>
             <li>There are four sections in total, and you must answer all the questions in each section.</li>
