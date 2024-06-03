@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import ResultModal from "./ResultModal";
 import { toast } from "react-toastify";
@@ -17,6 +17,7 @@ const Quiz = () => {
     sections.map((section) => Array(section.questions.length).fill(null))
   );
   const router = useRouter();
+  const timerRef = useRef();
 
   useEffect(() => {
     const currentUser = localStorage.getItem("currentUser");
@@ -26,10 +27,10 @@ const Quiz = () => {
   }, [router]);
 
   useEffect(() => {
-    const timer = setInterval(() => {
+    timerRef.current = setInterval(() => {
       setTimeLeft((prevTime) => {
         if (prevTime <= 1) {
-          clearInterval(timer);
+          clearInterval(timerRef.current);
           handleSubmit(); // Handle submission when time runs out
           return 0;
         }
@@ -37,7 +38,7 @@ const Quiz = () => {
       });
     }, 1000);
 
-    return () => clearInterval(timer);
+    return () => clearInterval(timerRef.current); // Clean up the timer on component unmount
   }, []);
 
   const handleAnswerOptionClick = (option) => {
@@ -180,3 +181,4 @@ const Quiz = () => {
 };
 
 export default Quiz;
+        
