@@ -16,7 +16,7 @@ const Signup = () => {
 
   const handleChange = (e) => {
     // Convert email to lowercase before setting the state
-    if (e.target.name === 'email') {
+    if (e.target.name === "email") {
       setForm({ ...form, email: e.target.value.toLowerCase() });
     } else {
       setForm({ ...form, [e.target.name]: e.target.value });
@@ -31,33 +31,40 @@ const Signup = () => {
     }
 
     setLoading(true);
-    const response = await fetch("https://bible-test.onrender.com/signup", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name: form.name,
-        email: form.email,
-        password: form.password,
-      }),
-    });
+    try {
+      const response = await fetch("https://bible-test.onrender.com/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          password: form.password,
+        }),
+      });
 
-    setLoading(false);
+      setLoading(false);
 
-    if (response.ok) {
-      toast.success("Signup successful");
-      router.push("/admin/users");
-    } else {
-      toast.error("Signup failed");
+      if (response.ok) {
+        toast.success("Signup successful");
+        router.push("/admin/users");
+      } else {
+        const data = await response.json();
+        toast.error(data.error || "Signup failed");
+      }
+    } catch (error) {
+      setLoading(false);
+      toast.error("An error occurred. Please try again later.");
     }
   };
+
   const navigateToUsers = () => {
     router.push("/admin/users");
   };
 
   return (
-    <main  className="min-h-screen bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 p-4">
+    <main className="min-h-screen bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 p-4">
       <div className="flex justify-end">
         <button
           onClick={navigateToUsers}
@@ -67,7 +74,7 @@ const Signup = () => {
         </button>
       </div>
 
-      <div className="mt-14 sm:mt-32 mt flex flex-col items-center justify-center bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 p-4">
+      <div className="mt-14 sm:mt-32 flex flex-col items-center justify-center">
         <form
           onSubmit={handleSubmit}
           className="bg-white shadow-lg rounded-lg p-8 max-w-md w-full transform transition-all duration-500 hover:scale-105"
@@ -95,7 +102,7 @@ const Signup = () => {
           <div className="mb-4">
             <label
               className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="name"
+              htmlFor="email"
             >
               Email
             </label>

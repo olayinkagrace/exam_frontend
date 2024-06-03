@@ -4,13 +4,12 @@ import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const Login = () => {
+const Loginn = () => {
   const [form, setForm] = useState({ email: '', password: '' });
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const handleChange = (e) => {
-    // Convert email to lowercase before setting the state
     if (e.target.name === 'email') {
       setForm({ ...form, email: e.target.value.toLowerCase() });
     } else {
@@ -93,4 +92,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Loginn;
