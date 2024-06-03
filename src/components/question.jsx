@@ -175,6 +175,12 @@ export const sections = [
         options: ["Emphasis", "Progressive Revelation", "Application"],
         answer: "Emphasis",
       },
+      {
+        question:
+          "In the Bible interpretation using the Principles of Context, the following are to be considered except....",
+        options: ["Immediate context", "Other Books by the same author", "None"],
+        answer: "None",
+      },
     ],
   },
 
