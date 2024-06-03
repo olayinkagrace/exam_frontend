@@ -12,7 +12,7 @@ const Quiz = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [scores, setScores] = useState(Array(sections.length).fill(0));
   const [showModal, setShowModal] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(10 * 60); // 4 minutes in seconds for all sections
+  const [timeLeft, setTimeLeft] = useState(2 * 60); // 4 minutes in seconds for all sections
   const [selectedOptions, setSelectedOptions] = useState(
     sections.map((section) => Array(section.questions.length).fill(null))
   );
@@ -86,33 +86,38 @@ const Quiz = () => {
 
   const handleSubmit = async () => {
     const email = localStorage.getItem("currentUser");
-  
-    try {
-      const response = await fetch("https://bible-test.onrender.com/submit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          scores: sections.map((section, index) => ({
-            title: section.title,
-            score: scores[index],
-          })),
-        }),
-      });
-  
-      if (response.ok) {
-        setShowModal(true);
-      } else {
-        toast.error("Error submitting score");
-      }
-    } catch (error) {
-      toast.error("An error occurred while submitting the score");
-    } finally {
-      localStorage.removeItem("currentUser");
+  const handleSubmit = async () => {
+  const email = localStorage.getItem("currentUser");
+
+  try {
+    const response = await fetch("https://bible-test.onrender.com/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        scores: sections.map((section, index) => ({
+          title: section.title,
+          score: scores[index],
+        })),
+      }),
+    });
+
+    if (response.ok) {
+      setShowModal(true);
+      localStorage.removeItem("currentUser");  // Moved here
+    } else {
+      const errorData = await response.json();
+      console.error("Error submitting score:", errorData);  // Added logging
+      toast.error("Error submitting score");
     }
-  };
+  } catch (error) {
+    console.error("An error occurred while submitting the score:", error);  // Added logging
+    toast.error("An error occurred while submitting the score");
+  }
+};
+
   
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 p-4">
