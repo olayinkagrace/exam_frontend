@@ -88,7 +88,7 @@ const Quiz = () => {
     const email = localStorage.getItem("currentUser");
 
     try {
-      const response = await fetch("https://bible-test.onrender.com/submit", {
+      const response = await fetch("https://exam-backend-ubjk.onrender.com/submit", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

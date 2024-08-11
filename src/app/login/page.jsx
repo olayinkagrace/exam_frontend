@@ -1,6 +1,6 @@
-import Loginn from "@/components/Loginn";
+import Login from "@/components/Login";
 
 
 export default function Login() {
-  return <Loginn />;
+  return <Login />;
 }

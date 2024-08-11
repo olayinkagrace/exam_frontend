@@ -15,7 +15,7 @@ const AdminDashboard = () => {
 
   const fetchUsers = async () => {
     try {
-      const response = await fetch("https://bible-test.onrender.com/users");
+      const response = await fetch("https://exam-backend-ubjk.onrender.com/users");
       if (response.ok) {
         const data = await response.json();
         setUsers(data);
@@ -37,7 +37,7 @@ const AdminDashboard = () => {
     setDeleting((prev) => ({ ...prev, [userId]: true }));
     try {
       const response = await fetch(
-        `https://bible-test.onrender.com/userDelete/${userId}`,
+        `https://exam-backend-ubjk.onrender.com/userDelete/${userId}`,
         {
           method: "DELETE",
           headers: {

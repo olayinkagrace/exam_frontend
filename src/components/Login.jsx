@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Image from 'next/image';
 import logo from "../../public/logo.jpg"
 
-const Loginn = () => {
+const Login = () => {
   const [form, setForm] = useState({ email: '', password: '' });
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -24,7 +24,7 @@ const Loginn = () => {
     setLoading(true);
 
     try {
-      const response = await fetch('https://bible-test.onrender.com/login', {
+      const response = await fetch('https://exam-backend-ubjk.onrender.com/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -98,4 +98,4 @@ const Loginn = () => {
   );
 };
 
-export default Loginn;
+export default Login;

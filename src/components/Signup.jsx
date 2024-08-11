@@ -34,7 +34,7 @@ const Signup = () => {
 
     setLoading(true);
     try {
-      const response = await fetch("https://bible-test.onrender.com/signup", {
+      const response = await fetch("https://exam-backend-ubjk.onrender.com/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
