@@ -1,39 +1,86 @@
-import Link from 'next/link';
+import Link from "next/link";
 import logo from "../../public/logo.jpg";
 import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 px-4">
-      <div className="bg-white p-8 rounded-lg shadow-lg text-center">
-      <div className="flex justify-center">
-       <Image src={logo} width={70} height={50} alt="logo" />
-       </div>
-        <h1 className="text-2xl md:text-3xl font-bold mb-4 mt-5">Welcome to the Examination Portal</h1>
-        <p className="text-base md:text-lg mb-6">Please read the following instructions carefully before proceeding:</p>
-        <div className="text-left mb-6">
-          <ol className="list-decimal list-inside text-sm md:text-base">
-            <li>Your password is <small className="font-bold text-lg"> gospel</small>  </li>
-            <li>The duration of the examination is 48 minutes. It is advisable to spend a maximum of one minute on each question to ensure you finish before the time runs out.</li>
-            <li>Once you are logged in, you will not be allowed to take the exam again. So, make sure to finish the exam once you log in.</li>
-            <li>There are four sections in total, and you must answer all the questions in each section.</li>
-            <li>The questions are multiple-choice and are based on the following courses:
-              <ul className="list-disc list-inside">
+    <main
+      className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-r from-blue-700 via-purple-700 to-pink-700 px-6 py-12"
+      style={{
+        backgroundImage: "url('/ministry.png')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+      <div className="bg-white bg-opacity-90 p-8 md:p-10 rounded-2xl shadow-2xl text-center max-w-xl w-full transform transition-all duration-500 hover:scale-105">
+        <div className="flex justify-center mb-6">
+          <Image
+            src={logo}
+            width={80}
+            height={60}
+            alt="logo"
+            className="rounded-full shadow-lg transition transform hover:rotate-12 duration-500"
+          />
+        </div>
+        <h1 className="text-xl md:text-2xl lg:text-3xl font-extrabold mb-4 text-gray-900 drop-shadow-md">
+          Welcome to the Examination Portal
+        </h1>
+        <p className="text-sm md:text-base lg:text-lg text-gray-700 mb-8 font-medium">
+          Please read the following instructions carefully before proceeding:
+        </p>
+        <div className="text-left mb-8 text-gray-800">
+          <ol className="list-decimal list-inside space-y-4">
+            <li>
+              Your password is{" "}
+              <span className="font-bold text-red-600 text-sm">gospel</span>.
+            </li>
+            <li>
+              The duration of the examination is 48 minutes. It is advisable to
+              spend a maximum of one minute on each question to ensure you
+              finish before the time runs out.
+            </li>
+            <li>
+              Once you are logged in, you will not be allowed to take the exam
+              again. So, make sure to finish the exam once you log in.
+            </li>
+            <li>
+              There are four sections in total, and you must answer all the
+              questions in each section.
+            </li>
+            <li>
+              The questions are multiple-choice and are based on the following
+              courses:
+              <ul className="list-disc list-inside pl-5 mt-2 space-y-1">
                 <li>Basic Bible Doctrine</li>
                 <li>Hermeneutics</li>
                 <li>The Call of God</li>
                 <li>Ministry Gifts</li>
               </ul>
             </li>
-            <li>Each question carries 5 marks, 12 questions per section and each section totals 60 marks.</li>
-            <li>There is a negative marking structure in place. For every question you miss, one mark is deducted from your total accumulated marks.</li>
-            <li className="font-bold">Make sure to Click on the submit button on the last question before the time lapses. Failure to do this, you will not have a score for the test.</li>
+            <li>
+              Each question carries 5 marks, with 12 questions per section, and
+              each section totals 60 marks.
+            </li>
+            <li>
+              There is a negative marking structure in place. For every question
+              you miss, one mark is deducted from your total accumulated marks.
+            </li>
+            <li className="font-bold text-red-600">
+              Once you finish the exam, you can either click on the submit
+              button or wait for your time to lapse. In this case, the system
+              will automatically submit for you.
+            </li>
             <li>At the end of the test, you will see your score instantly.</li>
-            <li>Every question you missed will be listed upon submission, along with their correct answers.</li>
+            <li>
+              Every question you missed will be listed upon submission, along
+              with their correct answers.
+            </li>
           </ol>
         </div>
-        <Link href="/login">
-          <p className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-violet-700 transition duration-300 text-sm md:text-base">Start Exam</p>
+        <Link href="/login" legacyBehavior>
+          <a className="bg-gradient-to-r from-green-400 to-green-500 text-white px-6 py-3 rounded-full font-semibold hover:from-green-500 hover:to-green-600 transition duration-300 text-base md:text-sm shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+            Start Exam
+          </a>
         </Link>
       </div>
     </main>

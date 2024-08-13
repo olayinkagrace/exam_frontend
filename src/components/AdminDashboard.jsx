@@ -1,5 +1,4 @@
-
-"use client"
+"use client";
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -15,7 +14,9 @@ const AdminDashboard = () => {
 
   const fetchUsers = async () => {
     try {
-      const response = await fetch("https://exam-backend-ubjk.onrender.com/users");
+      const response = await fetch(
+        "https://exam-backend-ubjk.onrender.com/users"
+      );
       if (response.ok) {
         const data = await response.json();
         setUsers(data);
@@ -66,58 +67,54 @@ const AdminDashboard = () => {
   };
 
   return (
-    <div className="min-h-screen flex px-5 flex-col items-center bg-gray-100 py-10">
-      <div className="w-full max-w-6xl bg-white shadow-lg rounded-lg p-6 mb-4 flex justify-between items-center">
-        <h2 className="text-3xl font-bold text-gray-800">Admin Dashboard</h2>
+    <div className="min-h-screen flex flex-col items-center bg-gradient-to-r from-blue-100 to-indigo-100 py-10 px-5">
+      <div className="w-full max-w-6xl bg-white shadow-2xl rounded-xl p-8 mb-8 flex justify-between items-center">
+        <h2 className="text-xl font-extrabold text-gray-800">
+          Admin Dashboard
+        </h2>
         <button
           onClick={navigateToRegisterUser}
-          className="bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700 transition duration-300"
+          className="bg-indigo-500 text-white text-xs px-6 py-3 rounded-lg shadow hover:bg-indigo-700 transform transition-all duration-300 hover:scale-105"
         >
           Register Student
         </button>
       </div>
-      <div className="w-full max-w-6xl bg-white shadow-lg rounded-lg p-6 overflow-x-auto">
+      <div className="w-full max-w-6xl bg-white shadow-xl rounded-xl p-6 overflow-x-auto">
         {loading ? (
           <div className="flex justify-center items-center min-h-[300px]">
-            <div className="w-16 h-16 border-4 border-blue-500 border-dashed rounded-full animate-spin"></div>
+            <div className="w-16 h-16 border-4 border-indigo-500 border-dashed rounded-full animate-spin"></div>
           </div>
         ) : (
           <table className="w-full table-auto border-collapse">
             <thead>
-              <tr className="bg-blue-500 text-white">
-                <th className="border px-4 py-2">Name</th>
-                <th className="border px-4 py-2">Email</th>
-                <th className="border px-4 py-2">Password</th>
-                <th className="border px-4 py-2">Scores</th>
-                <th className="border px-4 py-2">Total Score</th>
-                <th className="border px-4 py-2">Actions</th>
+              <tr className="bg-indigo-600 text-white text-sm">
+                <th className="border px-6 py-4">Name</th>
+                <th className="border px-6 py-4">Email</th>
+                <th className="border px-6 py-4">Password</th>
+                <th className="border px-6 py-4">Scores</th>
+                <th className="border px-6 py-4">Total Score</th>
+                <th className="border px-6 py-4">Actions</th>
               </tr>
             </thead>
             <tbody>
               {users.map((user) => (
                 <tr
                   key={user._id}
-                  className="even:bg-gray-100 odd:bg-white text-center"
+                  className="even:bg-gray-50 odd:bg-white text-center text-xs text-gray-800 hover:bg-gray-100 transform transition-colors duration-200"
                 >
-                  <td className="border px-4 py-2 text-gray-700">
-                    {user.name}
-                  </td>
-                  <td className="border px-4 py-2 text-gray-700">
-                    {user.email}
-                  </td>
-                  <td className="border px-4 py-2 text-gray-700">
-                    {user.password}
-                  </td>
-                  <td className="border px-4 py-2 text-gray-700">
+                  <td className="border px-6 py-4">{user.name}</td>
+                  <td className="border px-6 py-4">{user.email}</td>
+                  <td className="border px-6 py-4">{user.password}</td>
+                  <td className="border px-6 py-4">
                     {Array.isArray(user.scores)
                       ? user.scores.map((score, index) => (
-                          <div key={index}>{`Section ${
-                            index + 1
-                          }: ${score.score}`}</div>
+                          <div key={index} className="text-xs">
+                            {`Section ${index + 1}: ${score.score}`}
+                          </div>
                         ))
                       : "No scores available"}
                   </td>
-                  <td className="border px-4 py-2 text-gray-700">
+                  <td className="border px-6 py-4">
                     {Array.isArray(user.scores)
                       ? user.scores.reduce(
                           (total, score) => total + score.score,
@@ -125,13 +122,13 @@ const AdminDashboard = () => {
                         )
                       : 0}
                   </td>
-                  <td className="border px-4 py-2 text-gray-700">
+                  <td className="border px-6 py-4">
                     <button
                       onClick={() => handleDelete(user._id)}
                       disabled={deleting[user._id]}
-                      className={`px-4 py-2 rounded-lg shadow transition duration-300 ${
+                      className={`p-2 rounded-lg shadow text-[9px] transform transition-all duration-300 hover:scale-105 ${
                         deleting[user._id]
-                          ? "bg-gray-400"
+                          ? "bg-gray-400 cursor-not-allowed"
                           : "bg-red-500 hover:bg-red-700"
                       } text-white`}
                     >

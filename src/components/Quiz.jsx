@@ -12,7 +12,7 @@ const Quiz = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [scores, setScores] = useState(Array(sections.length).fill(0));
   const [showModal, setShowModal] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(48 * 60); // 10 minutes in seconds for all sections
+  const [timeLeft, setTimeLeft] = useState(10 * 60); // 10 minutes in seconds for all sections
   const [selectedOptions, setSelectedOptions] = useState(
     sections.map((section) => Array(section.questions.length).fill(null))
   );
@@ -31,7 +31,7 @@ const Quiz = () => {
       setTimeLeft((prevTime) => {
         if (prevTime <= 1) {
           clearInterval(timerRef.current);
-          handleSubmit(); // Handle submission when time runs out
+          handleSubmit(); // Automatically submit when time runs out
           return 0;
         }
         return prevTime - 1;
@@ -117,16 +117,23 @@ const Quiz = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 p-4">
-      <div className="bg-white shadow-lg rounded-lg p-6 max-w-3xl w-full text-center">
+    <div
+      className="min-h-screen flex flex-col items-center justify-center bg-cover bg-center p-4"
+      style={{ backgroundImage: "url('/ministry.png')" }}
+    >
+      <divmm className="bg-white bg-opacity-90 shadow-lg rounded-lg p-6 max-w-3xl w-full text-center">
         <div className="mt-4 text-lg font-bold text-gray-700">
           Time Left: {Math.floor(timeLeft / 60)}:
           {timeLeft % 60 < 10 ? `0${timeLeft % 60}` : timeLeft % 60}
         </div>
         <div className="text-2xl font-bold mb-4 text-gray-800">{sections[currentSection].title}</div>
+          <div className="text-xl font-semibold mb-6 text-gray-700">
+          {`Question ${currentQuestion + 1} of ${sections[currentSection].questions.length}`}
+        </div>
         <div className="text-2xl font-bold mb-4 text-gray-800">{`Question ${
           currentQuestion + 1
         } : ${sections[currentSection].questions[currentQuestion].question}`}</div>
+        
         <div className="flex flex-col space-y-4">
           {sections[currentSection].questions[currentQuestion].options.map((option) => (
             <button
@@ -168,7 +175,7 @@ const Quiz = () => {
             </button>
           )}
         </div>
-      </div>
+      </divmm>
       {showModal && (
         <ResultModal
           score={scores.reduce((a, b) => a + b, 0)} // total score
@@ -181,4 +188,3 @@ const Quiz = () => {
 };
 
 export default Quiz;
-        
