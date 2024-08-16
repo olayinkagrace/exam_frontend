@@ -1,5 +1,84 @@
 export const sections = [
   {
+    title: "Pastoral Ministry",
+    questions: [
+      {
+        question: "The ministry of the Pastor is most relevant to:",
+        options: ["Teaching Centre", "Local Church", "Mission field"],
+        answer: "Local Church",
+      },
+      {
+        question:
+          "God is building strong local churches and He wants members of the Local church to flow in the Spirit.",
+        options: ["True", "False", "None of the above"],
+        answer: "True",
+      },
+      {
+        question:
+          "The following names are used to refer to a Pastor and his functions in the New Testament except:",
+        options: ["Shepherd", "Overseer", "Brother"],
+        answer: "Brother",
+      },
+      {
+        question: "The major function of a Pastor is to:",
+        options: [
+          "Feed the flock",
+          "Dictate to the flock",
+          "Dominate the flock",
+        ],
+        answer: "Feed the flock",
+      },
+      {
+        question:
+          "There is no substitute for the Local Church, every believer should settle in and get involved.",
+        options: ["True", "False", "None of the above"],
+        answer: "True",
+      },
+      {
+        question:
+          "The ministry of Help is supernaturally associated with the ministry of:",
+        options: ["Apostle", "Pastor", "Prophets"],
+        answer: "Pastor",
+      },
+      {
+        question:
+          "The Local Church is a family and every believer should be a member of it.",
+        options: ["False", "True", "None of the Above"],
+        answer: "True",
+      },
+      {
+        question:
+          "In the Local Church, there is no higher spiritual authority than the Pastor because he has the spiritual oversight of the Local Church.",
+        options: ["Indifferent", "True", "False"],
+        answer: "True",
+      },
+      {
+        question:
+          "The following are characteristics of good supportive ministry except:",
+        options: ["Good Report", "Spiritual Maturity", "Divisive Tendencies"],
+        answer: "Divisive Tendencies",
+      },
+      {
+        question:
+          "The Bishop must be blameless, apt to teach, and have one wife.",
+        options: ["True", "False", "All of the above"],
+        answer: "All of the above",
+      },
+      {
+        question:
+          "Businessmen can be Helpers or deacons, and very often their financial and business expertise can be a great assistance to the Pastor.",
+        options: ["True", "False", "Surely Not"],
+        answer: "True",
+      },
+      {
+        question:
+          "A fellow in the Pastoral Ministry who is either not called to that office or who hurts and scatters the flock is called:",
+        options: ["True Pastor", "Caring Pastor", "False Pastor"],
+        answer: "False Pastor",
+      },
+    ],
+  },
+  {
     title: "Great Commission",
     questions: [
       {
@@ -11,11 +90,11 @@ export const sections = [
       {
         question: "What is the full meaning of UPG?",
         options: [
-          "under promising Ground",
-          "unreached People Groups",
-          "unchurched People Groups",
+          "Under Promising Ground",
+          "Unreached People Groups",
+          "Unchurched People Groups",
         ],
-        answer: "unreached People Groups",
+        answer: "Unreached People Groups",
       },
       {
         question: "One major barrier of the great commission is:",
@@ -33,7 +112,7 @@ export const sections = [
           "According to Matthew 9:37-38, Jesus expects that every believer and Church will abound in praying for:",
         options: [
           "More Churches",
-          "financial resources",
+          "Financial Resources",
           "Labourers into the Harvest",
         ],
         answer: "Labourers into the Harvest",
@@ -56,9 +135,9 @@ export const sections = [
         options: [
           "Preaching and Teaching",
           "Prayer and Power",
-          "Debates and oratory Prowess",
+          "Debates and Oratory Prowess",
         ],
-        answer: "Debates and oratory Prowess",
+        answer: "Debates and Oratory Prowess",
       },
       {
         question:
@@ -70,7 +149,7 @@ export const sections = [
         question:
           "Gracespring Christian Centre's Vision and Mission is simplified as:",
         options: [
-          "equipping the saints for Ministry",
+          "Equipping the saints for Ministry",
           "Church Planting",
           "Impacting lives with the Gospel",
         ],
@@ -171,83 +250,206 @@ export const sections = [
       },
     ],
   },
-
   {
-    title: "Pastoral Ministry",
+    title: "Church Pioneering and Church Dynamics",
     questions: [
       {
-        question: "The ministry of the Pastor is most relevant to:",
-        options: ["Teaching Centre", "Local Church", "Mission field"],
-        answer: "Local Church",
-      },
-      {
         question:
-          "God is building strong local churches and He wants members of the Local church to flow in the Spirit.",
-        options: ["True", "False", "None of the above"],
-        answer: "True",
-      },
-      {
-        question:
-          "The following names are used to refer to a Pastor and his functions in the New Testament except:",
-        options: ["Shepherd", "Overseer", "Brother"],
-        answer: "Brother",
-      },
-      {
-        question: "The major function of a Pastor is to:",
+          '"Christ is the Lord of the Church Planting and He has a vision for your new Church." The above principle describes:',
         options: [
-          "feed the flock",
-          "dictate to the flock",
-          "dominate the flock",
+          "The Mission Principle",
+          "The Barnabas Principle",
+          "The Boss Principle",
         ],
-        answer: "feed the flock",
+        answer: "The Boss Principle",
       },
       {
         question:
-          "There is no substitute for the Local Church, every believer should settle in and get involved.",
+          '"God is Planting strong Local Churches and He\'s equipping the believers to walk in the Supernatural."',
+        options: ["Not Necessarily", "False", "True"],
+        answer: "True",
+      },
+      {
+        question:
+          "In church planting, Prayer is important and the principle that is appropriate for prayerful planning is:",
+        options: [
+          "Leadership Principle",
+          "The Magnet Principle",
+          "The Nehemiah Principle",
+        ],
+        answer: "The Nehemiah Principle",
+      },
+      {
+        question:
+          "Attending to Organisational and administrative matters will protect and stabilise the new Church and enable it to grow in a healthy way.",
+        options: ["False", "Not Necessarily", "True"],
+        answer: "True",
+      },
+      {
+        question:
+          "When people come to Christ, our job is to partner with the Holy Spirit in helping them grow. This is best described as:",
+        options: [
+          "Equipping System",
+          "Spiritual Growth System",
+          "The Assimilation System",
+        ],
+        answer: "Spiritual Growth System",
+      },
+      {
+        question:
+          "The following are causes of discouragement in ministry and church planting except:",
+        options: [
+          "Overworking and Exhaustion",
+          "Praying and Studying the Word",
+          "Clutter and Frustration",
+        ],
+        answer: "Praying and Studying the Word",
+      },
+      {
+        question:
+          "The process by which new converts and first-timers are made to find their place and get connected with the local church is called:",
+        options: [
+          "Welcoming Process",
+          "Assimilation System",
+          "Spiritual Growth System",
+        ],
+        answer: "Assimilation System",
+      },
+      {
+        question:
+          "The following are needed in assimilating newcomers into the church:",
+        options: [
+          "An official welcome",
+          "Small Groups",
+          "Bad First Impression",
+        ],
+        answer: "Bad First Impression",
+      },
+      {
+        question:
+          "The system that ensures that people are fed with the Word, care for each other, and feel cared for is:",
+        options: [
+          "Hospitality System",
+          "Integration System",
+          "Pastoral Care System",
+        ],
+        answer: "Pastoral Care System",
+      },
+      {
+        question:
+          '"People knowing and being known, loving and being loved, serving and being served, celebrating and being celebrated" is the most astute definition for:',
+        options: ["Church Community", "Ministry Placement", "Good Leadership"],
+        answer: "Church Community",
+      },
+      {
+        question:
+          "The principle that is applicable when dealing with difficult people is:",
+        options: [
+          "The Bridge Principle",
+          "Mission Principle",
+          "Power Principle",
+        ],
+        answer: "Mission Principle",
+      },
+      {
+        question:
+          "In dealing with difficult people and offenders, the following steps are instructed by the Lord Jesus Christ except:",
+        options: [
+          "Speaking with the offender privately",
+          "Gossip the Offence and the Offender",
+          "Take one or two witnesses to help",
+        ],
+        answer: "Gossip the Offence and the Offender",
+      },
+    ],
+  },
+
+  {
+    title: "The Doctrine of Prayer",
+    questions: [
+      {
+        question: "The best way to learn prayers is by praying.",
+        options: ["False", "True", "Not Necessarily"],
+        answer: "True",
+      },
+      {
+        question:
+          '"God will not do anything on the earth except men Prays." The proponent of the above quote is:',
+        options: ["Smith Wigglesworth", "John Wesley", "Bob Jones"],
+        answer: "John Wesley",
+      },
+      {
+        question:
+          '"...Lord teach us to pray, as John also taught his disciples" (Luke 11:1). This means that prayer is by precept and example.',
         options: ["True", "False", "None of the above"],
         answer: "True",
       },
       {
         question:
-          "The ministry of Help is supernaturally associated with the ministry of:",
-        options: ["Apostle", "Pastor", "Prophets"],
-        answer: "Pastor",
+          "Jesus prayed all night in his earthly ministry. The significance of this gesture is that:",
+        options: [
+          "Prayer is extremely important",
+          "Prayer is not as important",
+          "None of the above",
+        ],
+        answer: "Prayer is extremely important",
+      },
+      {
+        question: "The following are prayers we pray for ministers except:",
+        options: [
+          "Utterance and Boldness",
+          "Preservation and Provision",
+          "Filthy lucre",
+        ],
+        answer: "Filthy lucre",
       },
       {
         question:
-          "The Local Church is a family and every believer should be a member of it.",
-        options: ["False", "True", "None of the Above"],
+          "The type of prayer we pray for saints as they keep walking with God and ministry according to Ephesians 6:18 is called:",
+        options: ["Prayer of Faith", "Prayer of Need", "Supplications"],
+        answer: "Supplications",
+      },
+      {
+        question:
+          "The confidence that we have in prayers is when we pray in the name of Jesus according to:",
+        options: ["Our urgent Needs", "God's Will", "Church Needs"],
+        answer: "God's Will",
+      },
+      {
+        question: "Praying in other tongues is:",
+        options: [
+          "Praying in understanding",
+          "Praying in the Spirit",
+          "Praying amiss",
+        ],
+        answer: "Praying in the Spirit",
+      },
+      {
+        question:
+          "The way a believer edifies himself and builds up himself in his most holy faith in life and ministry is by praying:",
+        options: [
+          "Pauline prayers",
+          "Praying in the Holy Ghost",
+          "Prayer of Faith",
+        ],
+        answer: "Praying in the Holy Ghost",
+      },
+      {
+        question:
+          "Fasting and Prayers make one walk in God's Plan effectively.",
+        options: ["True", "Not Necessarily", "True"],
         answer: "True",
       },
       {
+        question: "Mark 11:23-24 best describes:",
+        options: ["Intercession", "Prayer of Faith", "Prayer of Agreement"],
+        answer: "Prayer of Faith",
+      },
+      {
         question:
-          "In the Local Church, there is no higher spiritual authority than the Pastor because he has the spiritual oversight of the Local Church.",
-        options: ["indifferent", "True", "False"],
+          "The longer the prayers, the more effective the impact of the same.",
+        options: ["True", "Not Necessarily", "False"],
         answer: "True",
-      },
-      {
-        question:
-          "The following are characteristics of good supportive ministry except:",
-        options: ["Good report", "Spiritual maturity", "divisive Tendencies"],
-        answer: "divisive Tendencies",
-      },
-      {
-        question:
-          "The Bishop must be blameless, apt to teach, and have one wife.",
-        options: ["True", "False", "All of the above"],
-        answer: "All of the above",
-      },
-      {
-        question:
-          "Businessmen can be Helpers or deacons, and very often their financial and business expertise can be a great assistance to the Pastor.",
-        options: ["True", "False", "Surely Not"],
-        answer: "True",
-      },
-      {
-        question:
-          "A fellow in the Pastoral Ministry who is either not called to that office or who hurts and scatters the flock is called:",
-        options: ["True Pastor", "Caring Pastor", "False Pastor"],
-        answer: "False Pastor",
       },
     ],
   },

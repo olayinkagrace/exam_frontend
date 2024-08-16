@@ -32,7 +32,7 @@ export default function Home() {
           <ol className="list-decimal list-inside space-y-4">
             <li>
               Your password is{" "}
-              <span className="font-bold text-red-600 text-sm">gospel</span>.
+              <span className="font-bold text-red-600 text-base">gospel</span>.
             </li>
             <li>
               The duration of the examination is 48 minutes. It is advisable to
@@ -51,10 +51,11 @@ export default function Home() {
               The questions are multiple-choice and are based on the following
               courses:
               <ul className="list-disc list-inside pl-5 mt-2 space-y-1">
-                <li>Basic Bible Doctrine</li>
-                <li>Hermeneutics</li>
-                <li>The Call of God</li>
-                <li>Ministry Gifts</li>
+                <li>Pastoral Ministry</li>
+                <li>Great Commission</li>
+                <li>Homiletics</li>
+                <li>Church Pioneering and Church Dynamics</li>
+                <li>The Doctrine of Prayer</li>
               </ul>
             </li>
             <li>
