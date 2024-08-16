@@ -37,7 +37,7 @@ export default function Home() {
               <span className="font-bold text-red-600 text-base">faith</span>.
             </li>
             <li>
-              The duration of the examination is 48 minutes. It is advisable to
+              The duration of the examination is 60 minutes. It is advisable to
               spend a maximum of one minute on each question to ensure you
               finish before the time runs out.
             </li>
