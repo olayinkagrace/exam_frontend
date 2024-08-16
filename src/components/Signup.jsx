@@ -66,8 +66,14 @@ const Signup = () => {
 
   return (
     <div
-      className="min-h-screen flex flex-col items-center justify-center bg-cover bg-center bg-no-repeat"
-      style={{ backgroundImage: "url('/ministry.png')" }}
+      className="min-h-screen flex flex-col justify-center items-center px-6 py-12"
+      style={{
+        backgroundImage: "url('/som_3.png')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat", // Ensure the image doesn't repeat
+        backgroundAttachment: "fixed", // Optional: makes the background stay fixed while scrolling
+      }}
     >
       <form
         onSubmit={handleSubmit}

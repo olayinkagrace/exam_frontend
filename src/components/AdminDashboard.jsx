@@ -67,8 +67,17 @@ const AdminDashboard = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center bg-gradient-to-r from-blue-100 to-indigo-100 py-10 px-5">
-      <div className="w-full max-w-6xl bg-white shadow-2xl rounded-xl p-8 mb-8 flex justify-between items-center">
+    <div
+      className="min-h-screen flex flex-col items-center py-10 px-5"
+      style={{
+        backgroundImage: "url('/som_7.png')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundAttachment: "fixed",
+      }}
+    >
+      <div className="w-full max-w-6xl bg-white shadow-2xl rounded-xl p-8 mb-8 flex justify-between items-center bg-opacity-90">
         <h2 className="text-xl font-extrabold text-gray-800">
           Admin Dashboard
         </h2>
@@ -79,7 +88,7 @@ const AdminDashboard = () => {
           Register Student
         </button>
       </div>
-      <div className="w-full max-w-6xl bg-white shadow-xl rounded-xl p-6 overflow-x-auto">
+      <div className="w-full max-w-6xl bg-white shadow-xl rounded-xl p-6 overflow-x-auto bg-opacity-90">
         {loading ? (
           <div className="flex justify-center items-center min-h-[300px]">
             <div className="w-16 h-16 border-4 border-indigo-500 border-dashed rounded-full animate-spin"></div>

@@ -5,11 +5,13 @@ import Image from "next/image";
 export default function Home() {
   return (
     <main
-      className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-r from-blue-700 via-purple-700 to-pink-700 px-6 py-12"
+      className="min-h-screen flex flex-col justify-center items-center px-6 py-12"
       style={{
-        backgroundImage: "url('/ministry.png')",
+        backgroundImage: "url('/som_5.png')",
         backgroundSize: "cover",
         backgroundPosition: "center",
+        backgroundRepeat: "no-repeat", // Ensure the image doesn't repeat
+        backgroundAttachment: "fixed", // Optional: makes the background stay fixed while scrolling
       }}
     >
       <div className="bg-white bg-opacity-90 p-8 md:p-10 rounded-2xl shadow-2xl text-center max-w-xl w-full transform transition-all duration-500 hover:scale-105">
@@ -32,7 +34,7 @@ export default function Home() {
           <ol className="list-decimal list-inside space-y-4">
             <li>
               Your password is{" "}
-              <span className="font-bold text-red-600 text-base">gospel</span>.
+              <span className="font-bold text-red-600 text-base">faith</span>.
             </li>
             <li>
               The duration of the examination is 48 minutes. It is advisable to

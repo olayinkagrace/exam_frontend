@@ -54,8 +54,14 @@ const Login = () => {
 
   return (
     <div
-      className="min-h-screen flex flex-col items-center justify-center bg-cover bg-center bg-no-repeat"
-      style={{ backgroundImage: "url('/ministry.png')" }}
+      className="min-h-screen flex flex-col justify-center items-center px-6 py-12"
+      style={{
+        backgroundImage: "url('/som_8.png')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat", 
+        backgroundAttachment: "fixed", 
+      }}
     >
       <form
         onSubmit={handleSubmit}

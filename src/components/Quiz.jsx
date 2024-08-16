@@ -5,14 +5,14 @@ import { useRouter } from "next/navigation";
 import ResultModal from "./ResultModal";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { sections } from "./question"; // Import sections from questions.js
+import { sections } from "./question";
 
 const Quiz = () => {
   const [currentSection, setCurrentSection] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [scores, setScores] = useState(Array(sections.length).fill(0));
   const [showModal, setShowModal] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(50 * 60); 
+  const [timeLeft, setTimeLeft] = useState(50 * 60);
   const [selectedOptions, setSelectedOptions] = useState(
     sections.map((section) => Array(section.questions.length).fill(null))
   );
@@ -22,7 +22,7 @@ const Quiz = () => {
   useEffect(() => {
     const currentUser = localStorage.getItem("currentUser");
     if (!currentUser) {
-      router.push("/"); 
+      router.push("/");
     }
   }, [router]);
 
@@ -33,21 +33,21 @@ const Quiz = () => {
           clearInterval(timerRef.current);
           setTimeout(() => {
             handleSubmit(); // Automatically submit when time runs out
-          }, 100); // 100ms delay
+          }, 100);
           return 0;
         }
         return prevTime - 1;
       });
     }, 1000);
 
-    return () => clearInterval(timerRef.current); // Clean up the timer on component unmount
+    return () => clearInterval(timerRef.current);
   }, []);
 
   const handleAnswerOptionClick = (option) => {
     const currentQuestions = sections[currentSection].questions;
 
     if (selectedOptions[currentSection][currentQuestion] === option) {
-      return; // Prevent multiple selections of the same option
+      return;
     }
 
     setSelectedOptions((prev) => {
@@ -56,15 +56,12 @@ const Quiz = () => {
       return newSelections;
     });
 
-    // Calculate the score for the current question
     const isCorrect = option === currentQuestions[currentQuestion].answer;
     const scoreChange = isCorrect ? 5 : -1;
 
-    // Update the score for the current section
     setScores((prevScores) => {
       const newScores = [...prevScores];
       newScores[currentSection] += scoreChange;
-      console.log("Updated Scores:", newScores); // Debugging: Log updated scores
       return newScores;
     });
   };
@@ -88,18 +85,11 @@ const Quiz = () => {
   };
 
   const handleSubmit = async () => {
-    console.log("handleSubmit called"); // Debug log to check if this gets called automatically
-
     const email = localStorage.getItem("currentUser");
 
     if (!email) {
-      // console.error("No email found in local storage");
-      // toast.error("User email is not available");
       return;
     }
-
-    // Double-check the scores before submission
-    console.log("Scores being submitted:", scores);
 
     const payload = {
       email,
@@ -108,8 +98,6 @@ const Quiz = () => {
         score: scores[index],
       })),
     };
-
-    console.log("Submitting the following payload:", payload); // Log payload to check data
 
     try {
       const response = await fetch(
@@ -124,50 +112,65 @@ const Quiz = () => {
       );
 
       if (response.ok) {
-        console.log("Submission successful");
         setShowModal(true);
         localStorage.removeItem("currentUser");
       } else {
         const errorData = await response.json();
-        console.error("Error submitting score:", errorData);
         toast.error("Error submitting score");
       }
     } catch (error) {
-      console.error("An error occurred while submitting the score:", error);
       toast.error("An error occurred while submitting the score");
     }
   };
 
   return (
     <div
-      className="min-h-screen flex flex-col items-center justify-center bg-cover bg-center p-4"
-      style={{ backgroundImage: "url('/ministry.png')" }}
+      className="min-h-screen flex flex-col justify-center items-center px-4 py-8"
+      style={{
+        backgroundImage: "url('/som_6.png')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundAttachment: "fixed",
+      }}
     >
-      <div className="bg-white bg-opacity-90 shadow-lg rounded-lg p-6 max-w-3xl w-full text-center">
-        <div className="mt-4 text-lg font-bold text-gray-700">
-          Time Left: {Math.floor(timeLeft / 60)}:
-          {timeLeft % 60 < 10 ? `0${timeLeft % 60}` : timeLeft % 60}
+      <div className="bg-white bg-opacity-90 shadow-xl rounded-lg p-4 max-w-2xl w-full text-center border border-gray-300">
+        <div className="relative mb-4">
+          <div
+            className={`absolute inset-0 flex justify-center items-center text-base font-bold ${
+              timeLeft <= 300 ? "text-red-600" : "text-gray-700"
+            }`}
+          >
+            Time Left: {Math.floor(timeLeft / 60)}:
+            {timeLeft % 60 < 10 ? `0${timeLeft % 60}` : timeLeft % 60}
+          </div>
+          <div className="h-2 w-full bg-gray-300 rounded-full overflow-hidden mt-6">
+            <div
+              className="h-full bg-blue-500 transition-all duration-500"
+              style={{
+                width: `${((50 * 60 - timeLeft) / (50 * 60)) * 100}%`,
+              }}
+            ></div>
+          </div>
         </div>
-        <div className="text-2xl font-bold mb-4 text-gray-800">
-          Section: {sections[currentSection].title}
+        <div className="text-2xl font-extrabold mb-4 text-gray-800">
+          {`Section ${currentSection + 1}: ${sections[currentSection].title}`}
         </div>
-        <div className="text-xl font-semibold mb-6 text-gray-700">
+        <div className="text-base font-semibold mb-3 text-gray-700">
           {`Question ${currentQuestion + 1} of ${
             sections[currentSection].questions.length
           }`}
         </div>
-        <div className="text-2xl font-bold mb-4 text-gray-800">
-          {`Question ${currentQuestion + 1} : ${
-            sections[currentSection].questions[currentQuestion].question
-          }`}
+        <div className="text-xl font-bold mb-5 text-gray-800">
+          {sections[currentSection].questions[currentQuestion].question}
         </div>
-        <div className="flex flex-col space-y-4">
+        <div className="flex flex-col space-y-3">
           {sections[currentSection].questions[currentQuestion].options.map(
             (option) => (
               <button
                 key={option}
                 onClick={() => handleAnswerOptionClick(option)}
-                className={`p-2 rounded-lg transform transition-all duration-300 hover:scale-105 ${
+                className={`p-2 rounded-md transform transition-all duration-300 hover:scale-105 shadow ${
                   selectedOptions[currentSection][currentQuestion] === option
                     ? "bg-green-500 text-white"
                     : "bg-blue-500 text-white hover:bg-blue-700"
@@ -182,7 +185,7 @@ const Quiz = () => {
           {(currentQuestion > 0 || currentSection > 0) && (
             <button
               onClick={handlePrevious}
-              className="bg-gray-500 text-white p-2 rounded-lg hover:bg-gray-700 transform transition-all duration-300 hover:scale-105"
+              className="bg-gray-500 text-white text-base p-2 rounded-md hover:bg-gray-700 transform transition-all duration-300 hover:scale-105 shadow"
             >
               Previous
             </button>
@@ -191,14 +194,14 @@ const Quiz = () => {
           currentSection < sections.length - 1 ? (
             <button
               onClick={handleNext}
-              className="bg-gray-500 text-white p-2 rounded-lg hover:bg-gray-700 transform transition-all duration-300 hover:scale-105"
+              className="bg-gray-500 text-white p-2 text-sm rounded-md hover:bg-gray-700 transform transition-all duration-300 hover:scale-105 shadow"
             >
               Next
             </button>
           ) : (
             <button
               onClick={handleSubmit}
-              className="bg-green-500 text-white p-2 rounded-lg hover:bg-green-700 transform transition-all duration-300 hover:scale-105"
+              className="bg-green-500 text-white p-2 rounded-md hover:bg-green-700 transform transition-all duration-300 hover:scale-105 shadow"
             >
               Submit
             </button>
@@ -207,9 +210,9 @@ const Quiz = () => {
       </div>
       {showModal && (
         <ResultModal
-          score={scores.reduce((a, b) => a + b, 0)} // total score
-          questions={sections.flatMap((section) => section.questions)} // all questions
-          selectedOptions={selectedOptions.flat()} // all selected options
+          score={scores.reduce((a, b) => a + b, 0)}
+          questions={sections.flatMap((section) => section.questions)}
+          selectedOptions={selectedOptions.flat()}
         />
       )}
     </div>
