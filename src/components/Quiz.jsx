@@ -15,7 +15,7 @@ const Quiz = () => {
   const [scores, setScores] = useState(Array(sections.length).fill(0));
   const [showModal, setShowModal] = useState(false);
   const [showLoader, setShowLoader] = useState(false); // State to manage loader visibility
-  const [timeLeft, setTimeLeft] = useState(50 * 60);
+  const [timeLeft, setTimeLeft] = useState(60 * 60);
   const [selectedOptions, setSelectedOptions] = useState(
     sections.map((section) => Array(section.questions.length).fill(null))
   );
