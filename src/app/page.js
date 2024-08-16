@@ -67,9 +67,9 @@ export default function Home() {
               you miss, one mark is deducted from your total accumulated marks.
             </li>
             <li className="font-bold text-red-600">
-              Once you finish the exam, you can either click on the submit
-              button or wait for your time to lapse. In this case, the system
-              will automatically submit for you.
+              Make sure to click on the submit button on the last question
+              before the time lapses. Failure to do this will result in no score
+              for the test.
             </li>
             <li>At the end of the test, you will see your score instantly.</li>
             <li>
