@@ -437,7 +437,7 @@ export const sections = [
       {
         question:
           "Fasting and Prayers make one walk in God's Plan effectively.",
-        options: ["True", "Not Necessarily", "True"],
+        options: ["True", "Not Necessarily", "False"],
         answer: "True",
       },
       {
