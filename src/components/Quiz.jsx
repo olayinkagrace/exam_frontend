@@ -3,15 +3,18 @@
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import ResultModal from "./ResultModal";
+
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { sections } from "./question";
+import LoaderModal from "./Loader";
 
 const Quiz = () => {
   const [currentSection, setCurrentSection] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [scores, setScores] = useState(Array(sections.length).fill(0));
   const [showModal, setShowModal] = useState(false);
+  const [showLoader, setShowLoader] = useState(false); // State to manage loader visibility
   const [timeLeft, setTimeLeft] = useState(50 * 60);
   const [selectedOptions, setSelectedOptions] = useState(
     sections.map((section) => Array(section.questions.length).fill(null))
@@ -91,6 +94,8 @@ const Quiz = () => {
       return;
     }
 
+    setShowLoader(true); // Show the loader modal
+
     const payload = {
       email,
       scores: sections.map((section, index) => ({
@@ -120,6 +125,8 @@ const Quiz = () => {
       }
     } catch (error) {
       toast.error("An error occurred while submitting the score");
+    } finally {
+      setShowLoader(false); // Hide the loader modal after submission
     }
   };
 
@@ -208,6 +215,7 @@ const Quiz = () => {
           )}
         </div>
       </div>
+      {showLoader && <LoaderModal />}
       {showModal && (
         <ResultModal
           score={scores.reduce((a, b) => a + b, 0)}
