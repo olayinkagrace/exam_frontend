@@ -12,7 +12,7 @@ const Quiz = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [scores, setScores] = useState(Array(sections.length).fill(0));
   const [showModal, setShowModal] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(1 * 60); // 10 minutes in seconds for all sections
+  const [timeLeft, setTimeLeft] = useState(50 * 60); // 10 minutes in seconds for all sections
   const [selectedOptions, setSelectedOptions] = useState(
     sections.map((section) => Array(section.questions.length).fill(null))
   );
